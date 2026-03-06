@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Pedidos - Burger Express Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-orders.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">🍔 Burger Express</div>
+                <div class="sidebar-subtitle">Painel Administrativo</div>
+            </div>
+
+            <nav>
+                <ul class="sidebar-menu">
+                    <li class="menu-item">
+                        <a href="dashboard.html" class="menu-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="admin-orders.html" class="menu-link active">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="admin-products.html" class="menu-link">
+                            <i class="fas fa-hamburger"></i>
+                            <span>Produtos</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content-admin">
+            <div class="admin-header">
+                <h1 class="admin-title">Gerenciar Pedidos</h1>
+                <p class="admin-subtitle">Visualize e gerencie todos os pedidos em tempo real</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-card">
+                <div class="filter-group">
+                    <label>Status:</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">Todos</option>
+                        <option value="Pedido recebido">Pedido recebido</option>
+                        <option value="Pedido aceito">Pedido aceito</option>
+                        <option value="Pedido em preparo">Pedido em preparo</option>
+                        <option value="Saiu para entrega">Saiu para entrega</option>
+                        <option value="Pedido entregue">Pedido entregue</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Orders Grid -->
+            <div class="orders-grid" id="ordersGrid">
+                <!-- Orders will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detalhes do Pedido</h2>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading hidden" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin-orders.js"></script>
+</body>
+</html>

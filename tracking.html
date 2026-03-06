@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastreamento do Pedido - Burger Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tracking.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🍔 Burger Express</h1>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-home"></i> Início
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Success Message -->
+            <div class="success-banner">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Pedido Realizado com Sucesso! 🎉</h2>
+                <p>Acompanhe o status do seu pedido em tempo real</p>
+            </div>
+
+            <!-- Order Tracking -->
+            <div class="tracking-container">
+                <!-- Order Info -->
+                <div class="order-info-card">
+                    <h3>📦 Informações do Pedido</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Pedido Nº:</span>
+                            <span class="info-value" id="orderNumber">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Cliente:</span>
+                            <span class="info-value" id="customerName">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Telefone:</span>
+                            <span class="info-value" id="customerPhone">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Endereço:</span>
+                            <span class="info-value" id="customerAddress">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Pagamento:</span>
+                            <span class="info-value" id="paymentMethod">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Valor Total:</span>
+                            <span class="info-value total" id="orderTotal">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Timeline -->
+                <div class="status-timeline-card">
+                    <h3>🔄 Status do Pedido</h3>
+                    <div class="timeline">
+                        <div class="timeline-step" data-status="Pedido recebido">
+                            <div class="step-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-title">Pedido Recebido</div>
+                                <div class="step-description">Seu pedido foi recebido pela loja</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" data-status="Pedido aceito">
+                            <div class="step-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-title">Pedido Aceito</div>
+                                <div class="step-description">A loja confirmou seu pedido</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" data-status="Pedido em preparo">
+                            <div class="step-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-title">Em Preparo</div>
+                                <div class="step-description">Seu pedido está sendo preparado</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" data-status="Saiu para entrega">
+                            <div class="step-icon">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-title">Saiu para Entrega</div>
+                                <div class="step-description">Seu pedido está a caminho</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" data-status="Pedido entregue">
+                            <div class="step-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-title">Entregue</div>
+                                <div class="step-description">Pedido entregue com sucesso</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="order-items-card">
+                    <h3>🍔 Itens do Pedido</h3>
+                    <div class="items-list" id="orderItemsList">
+                        <!-- Items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Delivery Confirmation -->
+                <div class="confirmation-card hidden" id="confirmationCard">
+                    <div class="confirmation-content">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>Você recebeu seu pedido corretamente?</h3>
+                        <p>Por favor, confirme o recebimento do seu pedido</p>
+                        <div class="confirmation-buttons">
+                            <button class="confirm-btn confirm-yes" onclick="confirmDelivery(true)">
+                                <i class="fas fa-thumbs-up"></i> Sim, recebi!
+                            </button>
+                            <button class="confirm-btn confirm-no" onclick="confirmDelivery(false)">
+                                <i class="fas fa-thumbs-down"></i> Não recebi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thank You Message -->
+                <div class="thank-you-card hidden" id="thankYouCard">
+                    <i class="fas fa-heart"></i>
+                    <h3>Obrigado pela confirmação!</h3>
+                    <p id="thankYouMessage"></p>
+                    <a href="index.html" class="new-order-btn">
+                        <i class="fas fa-utensils"></i> Fazer Novo Pedido
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div class="loading hidden" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/tracking.js"></script>
+</body>
+</html>

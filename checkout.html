@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Pedido - Burger Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🍔 Burger Express</h1>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="checkout-container">
+                <!-- Formulário de Checkout -->
+                <div class="checkout-form-section">
+                    <h2 class="section-title">📝 Dados para Entrega</h2>
+                    
+                    <form id="checkoutForm" class="checkout-form">
+                        <div class="form-group">
+                            <label for="nome">
+                                <i class="fas fa-user"></i> Nome Completo *
+                            </label>
+                            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">
+                                <i class="fas fa-phone"></i> Telefone *
+                            </label>
+                            <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">
+                                <i class="fas fa-map-marker-alt"></i> Endereço Completo *
+                            </label>
+                            <textarea id="endereco" name="endereco" required placeholder="Rua, número, complemento, bairro, cidade" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pagamento">
+                                <i class="fas fa-credit-card"></i> Forma de Pagamento *
+                            </label>
+                            <select id="pagamento" name="pagamento" required>
+                                <option value="">Selecione a forma de pagamento</option>
+                                <option value="Pix">💳 Pix</option>
+                                <option value="Cartão de Crédito">💳 Cartão de Crédito</option>
+                                <option value="Cartão de Débito">💳 Cartão de Débito</option>
+                                <option value="Dinheiro">💵 Dinheiro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="trocoGroup" style="display: none;">
+                            <label for="troco">
+                                <i class="fas fa-money-bill"></i> Troco para quanto?
+                            </label>
+                            <input type="number" id="troco" name="troco" placeholder="Ex: 50.00" step="0.01" min="0">
+                        </div>
+
+                        <button type="submit" class="submit-order-btn">
+                            <i class="fas fa-check-circle"></i> Confirmar Pedido
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Resumo do Pedido -->
+                <div class="order-summary-section">
+                    <h2 class="section-title">🛒 Resumo do Pedido</h2>
+                    
+                    <div class="order-items" id="orderItems">
+                        <!-- Items will be loaded here -->
+                    </div>
+
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Taxa de Entrega:</span>
+                            <span id="deliveryFee">R$ 5,00</span>
+                        </div>
+                        <div class="total-row total-final">
+                            <span>Total:</span>
+                            <span id="totalFinal">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div class="loading hidden" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/checkout.js"></script>
+</body>
+</html>
